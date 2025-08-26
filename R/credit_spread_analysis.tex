@@ -1,0 +1,387 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Credit Spreads and Market Volatility Analysis},
+  pdfauthor={Waleed Elshowaya},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Credit Spreads and Market Volatility Analysis}
+\author{Waleed Elshowaya}
+\date{2025-08-25}
+
+\begin{document}
+\maketitle
+
+\subsection{Credit Spreads and Market Volatility
+Analysis}\label{credit-spreads-and-market-volatility-analysis}
+
+This project investigates the relationship between \textbf{credit
+spreads} (proxied by the LQD ETF) and \textbf{market volatility} (VIX).
+Understanding this relationship helps investors assess risk and make
+informed decisions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Setup}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Set CRAN mirror}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{c}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"https://cloud.r{-}project.org"}\NormalTok{))}
+
+\CommentTok{\# Required libraries}
+\NormalTok{packages }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{, }\StringTok{"quantmod"}\NormalTok{, }\StringTok{"lmtest"}\NormalTok{, }\StringTok{"sandwich"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"PerformanceAnalytics"}\NormalTok{)}
+
+\CommentTok{\# Auto{-}install if missing}
+\ControlFlowTok{for}\NormalTok{ (pkg }\ControlFlowTok{in}\NormalTok{ packages) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(pkg, }\AttributeTok{character.only =} \ConstantTok{TRUE}\NormalTok{)) \{}
+    \FunctionTok{install.packages}\NormalTok{(pkg)}
+    \FunctionTok{library}\NormalTok{(pkg, }\AttributeTok{character.only =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Data Collection and Preparation}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Download VIX and LQD data}
+\NormalTok{vix\_data }\OtherTok{\textless{}{-}} \FunctionTok{getSymbols}\NormalTok{(}\StringTok{"\^{}VIX"}\NormalTok{, }\AttributeTok{src=}\StringTok{"yahoo"}\NormalTok{, }\AttributeTok{from=}\StringTok{"2015{-}01{-}01"}\NormalTok{, }\AttributeTok{auto.assign =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{lqd\_data }\OtherTok{\textless{}{-}} \FunctionTok{getSymbols}\NormalTok{(}\StringTok{"LQD"}\NormalTok{, }\AttributeTok{src=}\StringTok{"yahoo"}\NormalTok{, }\AttributeTok{from=}\StringTok{"2015{-}01{-}01"}\NormalTok{, }\AttributeTok{auto.assign =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# Extract closing prices}
+\NormalTok{vix\_close }\OtherTok{\textless{}{-}}\NormalTok{ vix\_data}\SpecialCharTok{$}\NormalTok{VIX.Close}
+\NormalTok{lqd\_close }\OtherTok{\textless{}{-}}\NormalTok{ lqd\_data}\SpecialCharTok{$}\NormalTok{LQD.Close}
+
+\CommentTok{\# Merge and align dates}
+\NormalTok{merged\_xts }\OtherTok{\textless{}{-}} \FunctionTok{merge.xts}\NormalTok{(vix\_close, lqd\_close, }\AttributeTok{join=}\StringTok{"inner"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(merged\_xts) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"VIX"}\NormalTok{, }\StringTok{"LQD"}\NormalTok{)}
+
+\CommentTok{\# Calculate daily log returns}
+\NormalTok{vix\_returns }\OtherTok{\textless{}{-}} \FunctionTok{dailyReturn}\NormalTok{(merged\_xts}\SpecialCharTok{$}\NormalTok{VIX, }\AttributeTok{type=}\StringTok{"log"}\NormalTok{)}
+\NormalTok{lqd\_returns }\OtherTok{\textless{}{-}} \FunctionTok{dailyReturn}\NormalTok{(merged\_xts}\SpecialCharTok{$}\NormalTok{LQD, }\AttributeTok{type=}\StringTok{"log"}\NormalTok{)}
+
+\CommentTok{\# Convert to data frame}
+\NormalTok{merged\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{date =} \FunctionTok{index}\NormalTok{(merged\_xts),}
+  \AttributeTok{VIX =} \FunctionTok{as.numeric}\NormalTok{(merged\_xts}\SpecialCharTok{$}\NormalTok{VIX),}
+  \AttributeTok{LQD =} \FunctionTok{as.numeric}\NormalTok{(merged\_xts}\SpecialCharTok{$}\NormalTok{LQD),}
+  \AttributeTok{VIX\_return =} \FunctionTok{as.numeric}\NormalTok{(vix\_returns),}
+  \AttributeTok{LQD\_return =} \FunctionTok{as.numeric}\NormalTok{(lqd\_returns)}
+\NormalTok{)}
+
+\CommentTok{\# Remove any NA values}
+\NormalTok{merged\_df }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(merged\_df)}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Preview Data and Summary}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\FunctionTok{library}\NormalTok{(knitr)}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{head}\NormalTok{(merged\_df), }\AttributeTok{caption =} \StringTok{"First 6 rows of merged data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{First 6 rows of merged data}\tabularnewline
+\toprule\noalign{}
+date & VIX & LQD & VIX\_return & LQD\_return \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+date & VIX & LQD & VIX\_return & LQD\_return \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2015-01-02 & 17.79 & 119.83 & 0.0000000 & 0.0000000 \\
+2015-01-05 & 19.92 & 120.32 & 0.1130877 & 0.0040808 \\
+2015-01-06 & 21.12 & 120.81 & 0.0584962 & 0.0040642 \\
+2015-01-07 & 19.31 & 120.97 & -0.0895974 & 0.0013235 \\
+2015-01-08 & 17.01 & 120.58 & -0.1268216 & -0.0032291 \\
+2015-01-09 & 17.55 & 120.90 & 0.0312525 & 0.0026503 \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{summary\_table }\OtherTok{\textless{}{-}}\NormalTok{ merged\_df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(VIX, LQD, VIX\_return, LQD\_return) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summary}\NormalTok{()}
+\FunctionTok{print}\NormalTok{(summary\_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       VIX             LQD           VIX_return           LQD_return        
+##  Min.   : 9.14   Min.   : 98.28   Min.   :-0.4424488   Min.   :-5.132e-02  
+##  1st Qu.:13.48   1st Qu.:110.04   1st Qu.:-0.0448408   1st Qu.:-2.461e-03  
+##  Median :16.54   Median :116.98   Median :-0.0072095   Median : 2.284e-04  
+##  Mean   :18.37   Mean   :118.21   Mean   :-0.0000837   Mean   :-3.131e-05  
+##  3rd Qu.:21.34   3rd Qu.:123.62   3rd Qu.: 0.0354315   3rd Qu.: 2.554e-03  
+##  Max.   :82.69   Max.   :139.15   Max.   : 0.7682450   Max.   : 7.131e-02
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Visualizations}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Time series plot}
+\FunctionTok{ggplot}\NormalTok{(merged\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{date)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{VIX, }\AttributeTok{color=}\StringTok{"VIX"}\NormalTok{), }\AttributeTok{size=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{LQD, }\AttributeTok{color=}\StringTok{"LQD"}\NormalTok{), }\AttributeTok{size=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values=}\FunctionTok{c}\NormalTok{(}\StringTok{"VIX"}\OtherTok{=}\StringTok{"steelblue"}\NormalTok{, }\StringTok{"LQD"}\OtherTok{=}\StringTok{"darkorange"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"VIX vs LQD ETF Over Time"}\NormalTok{, }\AttributeTok{subtitle=}\StringTok{"2015{-}Present"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Value"}\NormalTok{, }\AttributeTok{x=}\StringTok{"Date"}\NormalTok{, }\AttributeTok{color=}\StringTok{"Series"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{(}\AttributeTok{base\_size=}\DecValTok{14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{credit_spread_analysis_files/figure-latex/all-in-one-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Scatter plot with regression line}
+\FunctionTok{ggplot}\NormalTok{(merged\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{VIX, }\AttributeTok{y=}\NormalTok{LQD)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.6}\NormalTok{, }\AttributeTok{color=}\StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Scatter Plot: LQD vs VIX"}\NormalTok{, }\AttributeTok{subtitle=}\StringTok{"With linear regression line"}\NormalTok{, }\AttributeTok{x=}\StringTok{"VIX"}\NormalTok{, }\AttributeTok{y=}\StringTok{"LQD"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{(}\AttributeTok{base\_size=}\DecValTok{14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{credit_spread_analysis_files/figure-latex/all-in-one-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Correlation and Regression}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Correlation coefficient}
+\NormalTok{cor\_value }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(merged\_df}\SpecialCharTok{$}\NormalTok{VIX, merged\_df}\SpecialCharTok{$}\NormalTok{LQD)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Correlation between VIX and LQD:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(cor\_value, }\DecValTok{4}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Correlation between VIX and LQD: 0.1174
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Linear regression}
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(LQD }\SpecialCharTok{\textasciitilde{}}\NormalTok{ VIX, }\AttributeTok{data=}\NormalTok{merged\_df)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Linear Regression Summary:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linear Regression Summary:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(model))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = LQD ~ VIX, data = merged_df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -21.3549  -8.2089  -0.9386   5.9699  20.2823 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 115.40838    0.49342 233.893  < 2e-16 ***
+## VIX           0.15273    0.02499   6.111 1.14e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.345 on 2674 degrees of freedom
+## Multiple R-squared:  0.01377,    Adjusted R-squared:  0.0134 
+## F-statistic: 37.34 on 1 and 2674 DF,  p-value: 1.135e-09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Regression with robust standard errors}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Regression Coefficients with Robust SEs:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Regression Coefficients with Robust SEs:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{coeftest}\NormalTok{(model, }\AttributeTok{vcov=}\FunctionTok{vcovHC}\NormalTok{(model, }\AttributeTok{type=}\StringTok{"HC1"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## t test of coefficients:
+## 
+##               Estimate Std. Error  t value  Pr(>|t|)    
+## (Intercept) 115.408384   0.467507 246.8590 < 2.2e-16 ***
+## VIX           0.152729   0.026981   5.6605  1.67e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Findings}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Findings:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Findings:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"{-} VIX and LQD show a positive correlation.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## - VIX and LQD show a positive correlation.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"{-} Linear regression indicates that increases in VIX are associated with increases in LQD.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## - Linear regression indicates that increases in VIX are associated with increases in LQD.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"{-} Robust standard errors confirm statistical significance.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## - Robust standard errors confirm statistical significance.
+\end{verbatim}
+
+\end{document}

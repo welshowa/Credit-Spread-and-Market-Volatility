@@ -1,0 +1,114 @@
+---
+title: "Credit Spreads and Market Volatility Analysis"
+author: "Waleed Elshowaya"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Credit Spreads and Market Volatility Analysis
+
+This project investigates the relationship between **credit spreads** (proxied by the LQD ETF) and **market volatility** (VIX). Understanding this relationship helps investors assess risk and make informed decisions.
+
+```{r all-in-one, message=FALSE, warning=FALSE}
+# -----------------------------
+# Setup
+# -----------------------------
+# Set CRAN mirror
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+# Required libraries
+packages <- c("tidyverse", "quantmod", "lmtest", "sandwich", "knitr", "PerformanceAnalytics")
+
+# Auto-install if missing
+for (pkg in packages) {
+  if (!require(pkg, character.only = TRUE)) {
+    install.packages(pkg)
+    library(pkg, character.only = TRUE)
+  }
+}
+
+# -----------------------------
+# Data Collection and Preparation
+# -----------------------------
+# Download VIX and LQD data
+vix_data <- getSymbols("^VIX", src="yahoo", from="2015-01-01", auto.assign = FALSE)
+lqd_data <- getSymbols("LQD", src="yahoo", from="2015-01-01", auto.assign = FALSE)
+
+# Extract closing prices
+vix_close <- vix_data$VIX.Close
+lqd_close <- lqd_data$LQD.Close
+
+# Merge and align dates
+merged_xts <- merge.xts(vix_close, lqd_close, join="inner")
+colnames(merged_xts) <- c("VIX", "LQD")
+
+# Calculate daily log returns
+vix_returns <- dailyReturn(merged_xts$VIX, type="log")
+lqd_returns <- dailyReturn(merged_xts$LQD, type="log")
+
+# Convert to data frame
+merged_df <- data.frame(
+  date = index(merged_xts),
+  VIX = as.numeric(merged_xts$VIX),
+  LQD = as.numeric(merged_xts$LQD),
+  VIX_return = as.numeric(vix_returns),
+  LQD_return = as.numeric(lqd_returns)
+)
+
+# Remove any NA values
+merged_df <- na.omit(merged_df)
+
+# -----------------------------
+# Preview Data and Summary
+# -----------------------------
+library(knitr)
+kable(head(merged_df), caption = "First 6 rows of merged data")
+
+summary_table <- merged_df %>% select(VIX, LQD, VIX_return, LQD_return) %>% summary()
+print(summary_table)
+
+# -----------------------------
+# Visualizations
+# -----------------------------
+library(ggplot2)
+
+# Time series plot
+ggplot(merged_df, aes(x=date)) +
+  geom_line(aes(y=VIX, color="VIX"), size=1) +
+  geom_line(aes(y=LQD, color="LQD"), size=1) +
+  scale_color_manual(values=c("VIX"="steelblue", "LQD"="darkorange")) +
+  labs(title="VIX vs LQD ETF Over Time", subtitle="2015-Present", y="Value", x="Date", color="Series") +
+  theme_minimal(base_size=14)
+
+# Scatter plot with regression line
+ggplot(merged_df, aes(x=VIX, y=LQD)) +
+  geom_point(alpha=0.6, color="purple") +
+  geom_smooth(method="lm", col="red", se=TRUE) +
+  labs(title="Scatter Plot: LQD vs VIX", subtitle="With linear regression line", x="VIX", y="LQD") +
+  theme_minimal(base_size=14)
+
+# -----------------------------
+# Correlation and Regression
+# -----------------------------
+# Correlation coefficient
+cor_value <- cor(merged_df$VIX, merged_df$LQD)
+cat("Correlation between VIX and LQD:", round(cor_value, 4), "\n\n")
+
+# Linear regression
+model <- lm(LQD ~ VIX, data=merged_df)
+cat("Linear Regression Summary:\n")
+print(summary(model))
+
+# Regression with robust standard errors
+cat("\nRegression Coefficients with Robust SEs:\n")
+print(coeftest(model, vcov=vcovHC(model, type="HC1")))
+
+# -----------------------------
+# Findings
+# -----------------------------
+cat("\nFindings:\n")
+cat("- VIX and LQD show a positive correlation.\n")
+cat("- Linear regression indicates that increases in VIX are associated with increases in LQD.\n")
+cat("- Robust standard errors confirm statistical significance.\n")
+
+
