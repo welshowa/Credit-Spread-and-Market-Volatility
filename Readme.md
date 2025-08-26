@@ -1,7 +1,7 @@
 # Credit Spreads and Market Volatility Analysis
 
 ## Project Overview
-This project analyzes the relationship between **credit spreads** (proxied by the LQD ETF) and **market volatility** (VIX) from 2015 to the present.  
+This project analyzes the relationship between **credit spreads** (proxied by the LQD ETF) and **market volatility** (VIX) from 2015 to present.  
 Understanding this relationship helps investors assess market risk and make informed investment decisions.
 
 ---
@@ -39,19 +39,19 @@ The following table represents a preview of the dataset after merging VIX and LQ
 The following table represents basic descriptive statistics for the VIX and LQD data, including their daily returns.  
 This helps summarize the range, median, mean, and overall distribution of the data.  
 
-![Summary Table](images/summaryTable.png)
+![Summary Table](images/SummaryTable.png)
 
 ### Graph 1: VIX vs LQD ETF Over Time
 The following line chart shows the VIX index and LQD ETF closing prices over time (2015–present).  
 It helps visualize how market volatility and credit spreads move over time.  
 
-![Graph 1](images/graph1.png)
+![Graph 1](images/Graph1.png)
 
 ### Graph 2: Scatter Plot of LQD vs VIX
 This scatter plot shows the relationship between LQD ETF prices and the VIX index, along with a linear regression line.  
 It helps illustrate the correlation between market volatility and credit spreads.  
 
-![Graph 2](images/graph2.png)
+![Graph 2](images/Graph2.png)
 
 ### Summary of Findings
 - LQD and VIX exhibit a positive correlation.  
